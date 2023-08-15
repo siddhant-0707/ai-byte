@@ -30,6 +30,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
                 <nav className="ml-auto text-sm font-medium space-x-6">
                   <Link href="/">Home</Link>
                   <Link href="/about">About</Link>
+                  <Link href="/auth/register">Register</Link>
+                  <Link href="/auth/login">Login</Link>
                 </nav>
               </div>
             </header>
