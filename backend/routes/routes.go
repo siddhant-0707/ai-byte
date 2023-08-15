@@ -2,15 +2,15 @@ package routes
 
 import (
 	"ai-byte/controllers"
-	"ai-byte/handler"
 	"ai-byte/middleware"
 	"github.com/gin-gonic/gin"
+	"net/http"
 )
 
 func SetupRoutes(app *gin.Engine) {
-	app.LoadHTMLGlob("templates/*")
-
-	app.GET("/", handler.ShowIndexPage)
+	app.GET("/", func(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{"message": "hello!"})
+	})
 
 	publicRoutes := app.Group("/auth")
 	publicRoutes.POST("/register", controllers.CreateUser)
