@@ -2,7 +2,7 @@ package controllers
 
 import (
 	"ai-byte/config"
-	"ai-byte/repositories"
+	"ai-byte/handler"
 	"github.com/gin-gonic/gin"
 	"strconv"
 
@@ -27,7 +27,7 @@ func AddBlog(c *gin.Context) {
 
 	input.UserID = user.ID
 
-	savedEntry, err := repositories.SaveBlog(config.DB, &input)
+	savedEntry, err := handler.SaveBlog(config.DB, &input)
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -58,7 +58,7 @@ func GetBlogByID(c *gin.Context) {
 	}
 
 	db := config.DB
-	blog, err := repositories.FindBlogByID(db, uint(id))
+	blog, err := handler.FindBlogByID(db, uint(id))
 	if err != nil {
 		c.JSON(http.StatusNotFound, gin.H{"error": "Blog not found"})
 		return

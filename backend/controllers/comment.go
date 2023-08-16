@@ -2,8 +2,8 @@ package controllers
 
 import (
 	"ai-byte/config"
+	"ai-byte/handler"
 	"ai-byte/models"
-	"ai-byte/repositories"
 	"ai-byte/utils"
 	"github.com/gin-gonic/gin"
 	"net/http"
@@ -32,7 +32,7 @@ func AddComment(c *gin.Context) {
 
 	db := config.DB
 	// Check if the blog with the given ID exists
-	blog, err := repositories.FindBlogByID(db, uint(id))
+	blog, err := handler.FindBlogByID(db, uint(id))
 	if err != nil {
 		c.JSON(http.StatusNotFound, gin.H{"error": "Blog not found"})
 		return
@@ -41,7 +41,7 @@ func AddComment(c *gin.Context) {
 	input.BlogID = blog.ID
 	input.UserID = user.ID
 
-	savedEntry, err := repositories.SaveComment(config.DB, &input)
+	savedEntry, err := handler.SaveComment(config.DB, &input)
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -62,14 +62,14 @@ func GetCommentsByBlogID(c *gin.Context) {
 	db := config.DB
 
 	// Check if the blog with the given ID exists
-	blog, err := repositories.FindBlogByID(db, uint(blogID))
+	blog, err := handler.FindBlogByID(db, uint(blogID))
 	if err != nil {
 		c.JSON(http.StatusNotFound, gin.H{"error": "Blog not found"})
 		return
 	}
 
 	// Get all comments for the blog from the database
-	comments, err := repositories.FindCommentsByBlogID(db, blog.ID)
+	comments, err := handler.FindCommentsByBlogID(db, blog.ID)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return

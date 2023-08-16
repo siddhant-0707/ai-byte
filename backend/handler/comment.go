@@ -1,4 +1,4 @@
-package repositories
+package handler
 
 import (
 	"ai-byte/models"

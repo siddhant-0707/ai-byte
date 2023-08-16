@@ -12,7 +12,7 @@ const RegisterPage: React.FC = () => {
             username: username,
             password: password
         };
-        // Implement your registration logic here
+        // Implement registration logic here
         const options = {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},

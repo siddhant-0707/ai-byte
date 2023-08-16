@@ -13,6 +13,7 @@ func main() {
 	// Configure CORS to allow requests from http://localhost:3000
 	corsConfig := cors.DefaultConfig()
 	corsConfig.AllowOrigins = []string{"http://localhost:3000"}
+	corsConfig.AllowHeaders = []string{"Authorization"}
 	app.Use(cors.New(corsConfig))
 
 	config.ConnectDB()

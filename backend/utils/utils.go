@@ -2,8 +2,8 @@ package utils
 
 import (
 	"ai-byte/config"
+	"ai-byte/handler"
 	"ai-byte/models"
-	"ai-byte/repositories"
 	"errors"
 	"fmt"
 	"github.com/gin-gonic/gin"
@@ -44,7 +44,7 @@ func CurrentUser(c *gin.Context) (models.User, error) {
 
 	userID := uint(userId)
 	db := config.DB
-	user, err := repositories.FindUserById(db, userID)
+	user, err := handler.FindUserById(db, userID)
 	if err != nil {
 		return models.User{}, err
 	}

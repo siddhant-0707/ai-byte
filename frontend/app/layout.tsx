@@ -4,6 +4,7 @@ import { Inter } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Analytics } from "@/components/analytics"
 import { ModeToggle } from "@/components/mode-toggle"
+import { AuthProvider } from "@/app/AuthContext";
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -22,6 +23,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body
         className={`antialiased min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-50 ${inter.className}`}
       >
+      <AuthProvider>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <div className="max-w-2xl mx-auto py-10 px-4">
             <header>
@@ -32,6 +34,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
                   <Link href="/about">About</Link>
                   <Link href="/auth/register">Register</Link>
                   <Link href="/auth/login">Login</Link>
+                  <Link href="/path">Select Path</Link>
                 </nav>
               </div>
             </header>
@@ -39,6 +42,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           </div>
           <Analytics />
         </ThemeProvider>
+      </AuthProvider>
       </body>
     </html>
   )
