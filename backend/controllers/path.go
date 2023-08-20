@@ -10,7 +10,7 @@ import (
 )
 
 func GetPath(c *gin.Context) {
-	client := openai.NewClient("OPENAI_KEY")
+	client := openai.NewClient("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")
 	resp, err := client.CreateChatCompletion(
 		context.Background(),
 		openai.ChatCompletionRequest{

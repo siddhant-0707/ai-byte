@@ -1,7 +1,7 @@
 'use client'
 
-import React, { useState } from 'react';
-import { useAuth } from '../../AuthContext';
+import React, {useContext, useState} from 'react';
+import { useAuth } from '../../AuthContext'
 
 const LoginPage: React.FC = () => {
     const { setJwt } = useAuth();
@@ -25,7 +25,7 @@ const LoginPage: React.FC = () => {
             const data = await res.json();
             const jwt = data.data; // Want to use this elsewhere in the application
             console.log(jwt);
-            setJwt({ jwt });
+            setJwt(jwt);
         } catch (error) {
             console.error('Error registering:', error);
         }

@@ -22,14 +22,14 @@ const Questionnaire: React.FC = () => {
                 const data = await response.json();
                 setQuestions(data);
                 console.log(data);
-                setAnswers(new Array(data.length).fill(''));
+                // setAnswers(new Array(data.length).fill(''));
             } catch (error) {
                 console.error('Error fetching questions:', error);
             }
         }
 
         fetchQuestions();
-    }, [jwt]);
+    }, [questions]);
 
     const handleAnswerChange = (index: number, answer: string) => {
         setAnswers((prevAnswers) => {
@@ -48,7 +48,7 @@ const Questionnaire: React.FC = () => {
         <div>
             <h1>Questionnaire</h1>
             <form>
-                {questions.map((question, index) => (
+                {questions && questions.map((question, index) => (
                     <div key={index}>
                         <p>{question}</p>
                         <input
@@ -64,6 +64,7 @@ const Questionnaire: React.FC = () => {
             </form>
         </div>
     );
+
 };
 
 export default Questionnaire;
