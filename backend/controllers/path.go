@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"ai-byte/config"
 	"context"
 	"fmt"
 	"github.com/gin-gonic/gin"
@@ -10,7 +11,7 @@ import (
 )
 
 func GetPath(c *gin.Context) {
-	client := openai.NewClient("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")
+	client := openai.NewClient(config.Config("OPENAI_KEY"))
 	resp, err := client.CreateChatCompletion(
 		context.Background(),
 		openai.ChatCompletionRequest{
