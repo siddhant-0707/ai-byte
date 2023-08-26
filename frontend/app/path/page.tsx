@@ -20,8 +20,8 @@ const Questionnaire: React.FC = () => {
                 };
                 const response = await fetch('http://localhost:8080/api/path', options);
                 const data = await response.json();
-                setQuestions(data[0]);
-                console.log(data[0]);
+                setQuestions(data["gpt-reply"]);
+                console.log(data);
                 // setAnswers(new Array(data.length).fill(''));
             } catch (error) {
                 console.error('Error fetching questions:', error);
@@ -29,7 +29,7 @@ const Questionnaire: React.FC = () => {
         }
 
         fetchQuestions();
-    }, [questions, jwt]);
+    }, [jwt]);
 
     const handleAnswerChange = (index: number, answer: string) => {
         setAnswers((prevAnswers) => {

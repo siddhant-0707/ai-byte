@@ -4,6 +4,7 @@ import { createContext, useContext, useState } from 'react';
 
 const AuthContext = createContext<any>('');
 
+// @ts-ignore
 export const AuthProvider = ({ children }) => {
     const [jwt, setJwt] = useState(null);
 

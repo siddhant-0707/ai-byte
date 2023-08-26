@@ -7,6 +7,8 @@ const LoginPage: React.FC = () => {
     const { setJwt } = useAuth();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [loginSuccess, setLoginSuccess] = useState(false);
+    const [loginAttempted, setLoginAttempted] = useState(false);
 
     const handleLogin = async () => {
         const requestData = {
@@ -25,11 +27,17 @@ const LoginPage: React.FC = () => {
             const data = await res.json();
             const jwt = data.data; // Want to use this elsewhere in the application
             console.log(jwt);
-            setJwt(jwt);
+            if (jwt) {
+                setJwt(jwt);
+                setLoginSuccess(true); // Set login success state
+            } else {
+                setLoginSuccess(false); // Set login failure state
+            }
+            setLoginAttempted(true);
+
         } catch (error) {
             console.error('Error registering:', error);
         }
-
     };
 
     return (
@@ -55,6 +63,8 @@ const LoginPage: React.FC = () => {
                     Login
                 </button>
             </form>
+            {loginAttempted && !loginSuccess && <p>Login Unsuccessful</p>}
+            {loginSuccess && <p>Login Successful</p>}
         </div>
     );
 };

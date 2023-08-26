@@ -19,7 +19,7 @@ func GetPath(c *gin.Context) {
 			Messages: []openai.ChatCompletionMessage{
 				{
 					Role: openai.ChatMessageRoleUser,
-					Content: "Generate 10 basic questions which can be answered in one to two words. The question can" +
+					Content: "Generate 10 basic questions which can be answered in one to two words. The question" +
 						"can be related to NLP, Computer Vision, Regression, Neural Networks, etc.",
 				},
 			},
